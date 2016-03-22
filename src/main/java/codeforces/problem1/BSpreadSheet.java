@@ -30,7 +30,6 @@ public class BSpreadSheet {
             if (chars[0] == 'R' && chars[1] > '0' && chars[1] <= '9' && line.contains("C")) { // gap
                 String[] colSplit = line.split(QUOTE_C);
                 result.append(convertFromRC(colSplit[0].split(QUOTE_R)[1], colSplit[1]));
-                //System.out.println(convertFromRC(colSplit[0].split(QUOTE_R)[1], colSplit[1]));
             } else {
                 int i = 0;
                 for (; i < chars.length; ) {
@@ -39,7 +38,6 @@ public class BSpreadSheet {
                     i++;
                 }
                 result.append(convertFrom26(line.substring(0, i), line.substring(i, line.length())));
-                //System.out.println(convertFrom26(line.substring(0, i), line.substring(i, line.length())));
             }
             result.append("\n");
         }
