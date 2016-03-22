@@ -1,6 +1,7 @@
 package codeforces.problem1;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.regex.Pattern;
 
 /**
@@ -19,15 +20,17 @@ public class BSpreadSheet {
     static String QUOTE_C = Pattern.quote("C");
     static String QUOTE_R = Pattern.quote("R");
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int n = Integer.parseInt(scanner.nextLine());
+    public static void main(String[] args) throws Exception {
+        BufferedReader scanner = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(scanner.readLine());
+        StringBuilder result = new StringBuilder(n);
         for (int j = 0; j < n; j++) {
-            String line = scanner.nextLine();
+            String line = scanner.readLine();
             char[] chars = line.toCharArray();
             if (chars[0] == 'R' && chars[1] > '0' && chars[1] <= '9' && line.contains("C")) { // gap
                 String[] colSplit = line.split(QUOTE_C);
-                System.out.println(convertFromRC(colSplit[0].split(QUOTE_R)[1], colSplit[1]));
+                result.append(convertFromRC(colSplit[0].split(QUOTE_R)[1], colSplit[1]));
+                //System.out.println(convertFromRC(colSplit[0].split(QUOTE_R)[1], colSplit[1]));
             } else {
                 int i = 0;
                 for (; i < chars.length; ) {
@@ -35,10 +38,12 @@ public class BSpreadSheet {
                         break;
                     i++;
                 }
-                System.out.println(convertFrom26(line.substring(0, i), line.substring(i, line.length())));
+                result.append(convertFrom26(line.substring(0, i), line.substring(i, line.length())));
+                //System.out.println(convertFrom26(line.substring(0, i), line.substring(i, line.length())));
             }
+            result.append("\n");
         }
-
+        System.out.println(result.toString());
 /*
         StringBuilder lOutput = new StringBuilder();
         StringBuilder rowSB = new StringBuilder();
